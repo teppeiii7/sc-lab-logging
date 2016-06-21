@@ -1,0 +1,8 @@
+---
+# nginx vars
+domain_listing: listing.sclab.scratchcrew.tokyo
+domain_search: search.sclab.scratchcrew.tokyo
+
+# td-agent vars
+s3_bucket_logserver: sclab-dev.logserver
+s3_bucket_logserver_search: sclab-dev.logserver.search

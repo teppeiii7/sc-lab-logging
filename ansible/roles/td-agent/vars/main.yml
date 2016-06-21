@@ -1,0 +1,11 @@
+---
+td_agent:
+  plugins:
+    - { name: 'fluent-plugin-tail-ex' }
+    - { name: 'fluent-plugin-forest' }
+    - { name: 'fluent-plugin-config-expander' }
+    - { name: 'fluent-plugin-parser' }
+    - { name: 'fluent-plugin-fields-parser' }
+    - { name: 'fluent-plugin-uri_decoder' }
+  port: 24224
+  bindaddress: 0.0.0.0

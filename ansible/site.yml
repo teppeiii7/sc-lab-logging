@@ -1,0 +1,7 @@
+---
+- hosts: log-server
+  sudo: yes
+  roles:
+    - ruby
+    - nginx
+    - td-agent

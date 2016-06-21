@@ -1,0 +1,29 @@
+---
+- name: install libselinux-python 
+  yum: name=libselinux-python state=present
+  tags: ruby
+
+- name: install libxml2 
+  yum: name=libxml2 state=present
+  tags: ruby
+
+- name: install libxml2-devel 
+  yum: name=libxml2-devel state=present
+  tags: ruby
+
+- name: install libxslt-devel 
+  yum: name=libxslt-devel state=present
+  tags: ruby
+
+- name: install ruby-devel 
+  yum: name=ruby-devel state=present
+  tags: ruby
+
+- name: install gcc 
+  yum: name=gcc state=present
+  tags: ruby
+
+- name: install nokogiri
+  command: "gem install nokogiri -- --use-system-libraries=true --with-xml2-include=/usr/include/libxml2/"
+  tags: ruby
+

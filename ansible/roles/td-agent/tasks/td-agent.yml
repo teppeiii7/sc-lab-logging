@@ -1,0 +1,50 @@
+---
+- name: rpm repo
+  copy: src=repo dest=/etc/yum.repos.d/td.repo
+  tags: td-agent
+
+- name: install td-agent
+  yum: name=td-agent state=latest
+  tags: td-agent
+
+- name: install fluent-plugin-rewrite
+  command: "/opt/td-agent/embedded/bin/fluent-gem install fluent-plugin-rewrite"
+  tags: td-agent
+
+- name: install fluent-plugin-s3
+  command: "gem install fluent-plugin-s3"
+  tags: td-agent
+
+- name: Check plugins
+  command: "td-agent-gem list --local {{ item.name }}"
+  with_items: "{{ td_agent.plugins }}"
+  changed_when: False
+  failed_when: False
+  register: plugin_status
+  tags: td-agent
+
+- name: Install plugins
+  command: "td-agent-gem install {{ item.item.name }}"
+  with_items: plugin_status.results
+  when: plugin_status.results is defined and item.stdout[0] is undefined
+  tags: td-agent
+
+- name: make tmp-dir
+  command: mkdir -p /tmp/td-agent
+  tags: td-agent
+
+- name: change authority of tmp-dir 
+  command: chown td-agent:td-agent /tmp/td-agent
+  tags: td-agent
+
+- name: service td-agent
+  service: name=td-agent state=started enabled=yes
+  tags: td-agent
+
+- name: td-agent template copy
+  template: >
+    src=td-agent.conf
+    dest=/etc/td-agent/td-agent.conf
+    backup=yes
+  notify: restart td-agent
+  tags: td-agent

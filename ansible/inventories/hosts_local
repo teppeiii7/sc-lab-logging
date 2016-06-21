@@ -1,0 +1,5 @@
+[log-server]
+52.195.218.100
+
+[local:children]
+log-server

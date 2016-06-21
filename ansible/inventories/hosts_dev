@@ -1,0 +1,7 @@
+[log-server]
+log-request-server01 ansible_ssh_host=52.69.41.154
+log-imp-server01 ansible_ssh_host=52.193.6.251
+log-ccv-server01 ansible_ssh_host=52.192.54.101
+
+[dev:children]
+log-server

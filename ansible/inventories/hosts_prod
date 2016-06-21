@@ -1,0 +1,10 @@
+[log-server]
+log-request-server01 ansible_ssh_host=52.192.0.115
+log-request-server02 ansible_ssh_host=52.192.164.97
+log-imp-server01 ansible_ssh_host=52.192.43.227
+log-imp-server02 ansible_ssh_host=52.192.144.20
+log-ccv-server01 ansible_ssh_host=52.192.1.220
+log-ccv-server02 ansible_ssh_host=52.192.157.222
+
+[prod:children]
+log-server
